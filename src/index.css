@@ -1,0 +1,42 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* background-color: red; */
+}
+
+.form-block {
+  /* background-color: red; */
+  background-image: linear-gradient(blue, rgb(5, 255, 155));
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-block form {
+  background-color: rgba(255, 255, 255, 0.705);
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-block form label {
+  font-size: 32px;
+  text-align: center;
+}
+
+.form-block form input {
+  font-size: 18px;
+  padding: 3px 10px;
+}
+
+.form-block form button {
+  font-size: 18px;
+  padding: 3px 10px;
+}
