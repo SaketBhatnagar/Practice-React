@@ -1,32 +1,35 @@
-import React from "react";
-import Country from "./Country.json";
-const Form = () => {
-  let data = Country;
-  return (
-    <section className="form-block">
-      <form>
-        <label htmlFor="search">Search Country </label>
-        <input
-          type="text"
-          placeholder="Search here......"
-          id="search"
-          list="country"
-        />
+import React, { Component } from "react";
+import data from "./Country.json";
+export default class Form extends Component {
+  constructor() {
+    super();
+  }
 
-        <datalist id="country">
-          {data.map(value => {
-            return (
-              <option value={value.code} key={value.name}>
-                {value.name}
-              </option>
-            );
-          })}
-        </datalist>
+  render() {
+    return (
+      <section className="form-block">
+        <form>
+          <label htmlFor="search">Search Country </label>
+          <input
+            type="text"
+            placeholder="Search here......"
+            id="search"
+            list="country"
+          />
 
-        <button>Submit</button>
-      </form>
-    </section>
-  );
-};
+          <datalist id="country">
+            {data.map(value => {
+              return (
+                <option value={value.code} key={value.name}>
+                  {value.name}
+                </option>
+              );
+            })}
+          </datalist>
 
-export default Form;
+          <button>Submit</button>
+        </form>
+      </section>
+    );
+  }
+}

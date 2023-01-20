@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Form from "./components/Form";
 import Hello from "./components/Hello";
 
 class App extends Component {
@@ -8,20 +9,7 @@ class App extends Component {
     this.arr = [10, 20, 30];
   }
   render() {
-    return (
-      <div>
-        i'm class component
-        <br />
-        <br />
-        <Hello
-          name="chombi"
-          age={1}
-          married="yes"
-          arr={this.arr}
-          login={true}
-        ></Hello>
-      </div>
-    );
+    return <Form></Form>;
   }
 }
 
