@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import data from "./Country.json";
+import Types from "prop-types";
 export default class Form extends Component {
-  constructor() {
+  constructor(props) {
     super();
   }
 
@@ -18,7 +18,7 @@ export default class Form extends Component {
           />
 
           <datalist id="country">
-            {data.map(value => {
+            {this.props.data.map(value => {
               return (
                 <option value={value.code} key={value.name}>
                   {value.name}
@@ -33,3 +33,19 @@ export default class Form extends Component {
     );
   }
 }
+// import Types from "prop-types";
+
+Form.defaultProps = {
+  data: [
+    { name: "India", code: "IN" },
+    { name: "Russia", code: "RS" },
+  ],
+};
+
+Form.propTypes = {
+  data: Types.array,
+  user: Types.object,
+  age: Types.number,
+};
+
+// defaultProps, propTypes are React component properties

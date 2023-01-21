@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Form from "./components/Form";
 import Hello from "./components/Hello";
+import data from "./components/Country.json";
 
 class App extends Component {
   constructor() {
@@ -9,18 +10,10 @@ class App extends Component {
     this.arr = [10, 20, 30];
   }
   render() {
-    return <Form></Form>;
+    return (
+      <Form data={data} user={{ name: "Chombi", age: 18 }} age="14"></Form>
+    );
   }
 }
-
-// String
-// Number
-// boolean
-// NaN
-// Undefined
-// Array
-// object
-
-// console.log(App);
 
 export default App;
