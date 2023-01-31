@@ -1,19 +1,21 @@
 import React, { Component } from "react";
-import Form from "./components/Form";
-import Hello from "./components/Hello";
-import data from "./components/Country.json";
+import Top from "./components/Top";
 
-class App extends Component {
-  constructor() {
-    super();
-
-    this.arr = [10, 20, 30];
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: true,
+    };
   }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ display: false });
+    }, 10000);
+  }
+
   render() {
-    return (
-      <Form data={data} user={{ name: "Chombi", age: 18 }} age="14"></Form>
-    );
+    return <div>{this.state.display ? <Top /> : ""}</div>;
   }
 }
-
-export default App;
