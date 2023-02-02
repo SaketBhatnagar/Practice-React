@@ -15,8 +15,17 @@ export default class Main extends Component {
         this.setState({ data: data });
       });
     });
+
     console.log("--------------------------------------- mounting");
     console.log(this.state);
+  }
+
+  getSnapshotBeforeUpdate(prevprop, prevstate) {
+    console.log("--------------------");
+
+    console.log(prevprop);
+    console.log(prevstate);
+    console.log("--------------------");
   }
 
   componentDidUpdate() {
