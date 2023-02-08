@@ -1,20 +1,12 @@
-import React, { Component } from "react";
-import Main from "./component/Main";
-import ErrorBoundary from "./component/ErroBoundary";
-import Hero from "./component/Hero";
+import React from "react";
+import Main from "./components/Main";
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>
-        <ErrorBoundary>
-          <Hero name="joker" />
-        </ErrorBoundary>
+const App = () => {
+  return (
+    <div>
+      <Main />
+    </div>
+  );
+};
 
-        <ErrorBoundary>
-          <Main />
-        </ErrorBoundary>
-      </div>
-    );
-  }
-}
+export default App;

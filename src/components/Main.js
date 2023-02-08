@@ -1,45 +1,53 @@
-import React, { Component } from "react";
-import Card from "./Card";
+import React, { useState, useEffect } from "react";
 
-export default class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-    };
-  }
+const Main = () => {
+  //   let [dat, setData] = useState([]);
+  //   useEffect(() => {
+  //     // side-effects
+  //     let fetchData = async () => {
+  //       try {
+  //         let res = await fetch("https://api.github.com/users");
+  //         let data1 = await res.json();
+  //         setData(data1);
+  //       } catch (err) {
+  //         console.log(err);
+  //       }
+  //     };
+  //     fetchData();
+  //   }, []);
 
-  componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then(res => {
-        res.json().then(data => {
-          this.setState({ data: data });
-        });
-      })
-      .catch(err => console.log(err));
-    console.log(this.state);
-  }
-  render() {
-    return (
-      <section className="main-block">
-        <article>
-          {this.state.data.map(value => {
-            let url = `http://${value.website}`;
-            return (
-              <Card
-                key={value.id}
-                name={value.name}
-                username={value.username}
-                email={value.email}
-                city={value.address.city}
-                phone={value.phone}
-                website={url}
-                company={value.company.name}
-              />
-            );
-          })}
-        </article>
-      </section>
-    );
-  }
-}
+  let [username, setUsername] = useState("");
+  let [password, setPassword] = useState("");
+
+  let handleSubmit = e => {
+    e.preventDefault();
+    console.log(username);
+    console.log(password);
+    console.log("form submitted");
+  };
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        Username{" "}
+        <input
+          type="text"
+          name="username"
+          onChange={e => setUsername(e.target.value)}
+        />
+        <br />
+        <br />
+        Password{" "}
+        <input
+          type="password"
+          name="password"
+          onChange={e => setPassword(e.target.value)}
+        />
+        <br />
+        <br />
+        <button>Submit</button>
+      </form>
+    </div>
+  );
+};
+
+export default Main;
