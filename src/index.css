@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.main-block {
+  /* background-color: red; */
+  height: 100vh;
+}
+
+.main-block article {
+  display: flex;
+  justify-content: center;
+  padding: 5vw;
+  flex-direction: column;
+}
+
+.main-block article form {
+  /* background-color: blue; */
+}
+
+form input,
+button {
+  padding: 1vw;
+  font-size: 2vw;
+}
+
+.card {
+  background-color: rgba(0, 255, 213, 0.198);
+  font-size: 2vw;
+  padding: 1vw;
+}
+
+.card h1 {
+  text-align: center;
+}

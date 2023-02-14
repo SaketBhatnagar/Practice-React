@@ -1,29 +1,24 @@
 import React, { useEffect, useState } from "react";
 
 const Main = () => {
-  let [user, setUser] = useState("");
+  let [city, setCity] = useState("");
   let [data, setData] = useState([]);
   let [search, setSearch] = useState(false);
 
-  let [ulist, setUlist] = useState([]);
-  // `https://api.gtihub.com/users/${user}`
-
   useEffect(() => {
-    let fetchData = () => {
-      fetch(`https://api.github.com/users/${user}`).then(res => {
-        res.json().then(data => {
-          setData([data]);
-          console.log(data);
-        });
-      });
-    };
+    let fetchData = async () => {
+      let res = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=6afd13eb3627e76136352d0eb59bda49&units=metric`
+      );
 
+      let j_data = await res.json();
+      setData([j_data]);
+      console.log([j_data]);
+    };
     if (search) {
       fetchData();
     }
     setSearch(false);
-    console.log("useEffect");
-    console.log(data);
   }, [search]);
 
   let handleSubmit = e => {
@@ -32,30 +27,49 @@ const Main = () => {
     setSearch(true);
   };
   return (
-    <section>
+    <section className="main-block">
       <article>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Search User...."
             onChange={e => {
-              setUser(e.target.value);
+              setCity(e.target.value);
             }}
           ></input>
-          {}
 
           <button>🔍</button>
         </form>
 
-        <section>
+        <article>
           {data.map(value => {
-            return;
-            <>
-              <h1>{value.html_url}</h1>
-              <img src={value.avatar_url} width="300px" />
-            </>;
+            return (
+              <div className="card" key={Math.random()}>
+                <h1>{value.name}</h1>
+                <img
+                  src={`http://openweathermap.org/img/wn/${value.weather[0].icon}@2x.png`}
+                  width="100px"
+                />
+                <br />
+                <p>{value.weather[0].description}</p>
+
+                <br />
+                <p>
+                  Lon : {value.coord.lon} | Lat : {value.coord.lat}
+                </p>
+
+                <p>
+                  Temp : {value.main.temp} <sup>o</sup>C
+                </p>
+                <p>Humidity : {value.main.humidity}</p>
+                <p>
+                  Min Temp : {value.main.temp_min} <br />
+                  Max Temp : {value.main.temp_max}
+                </p>
+              </div>
+            );
           })}
-        </section>
+        </article>
       </article>
     </section>
   );
