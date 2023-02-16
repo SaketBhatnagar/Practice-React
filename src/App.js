@@ -1,11 +1,11 @@
 import React from "react";
-import Main from "./components/Main";
-
+import Store from "./apis/Store";
+import Home from "./components/Home";
 const App = () => {
   return (
-    <div>
-      <Main />
-    </div>
+    <Store>
+      <Home />
+    </Store>
   );
 };
 
