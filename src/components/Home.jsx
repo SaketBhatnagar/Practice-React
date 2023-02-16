@@ -6,7 +6,15 @@ const Home = () => {
       <h1> Home</h1>
       <userStore.Consumer>
         {value => {
-          return <h2>{value}</h2>;
+          return (
+            <div>
+              <h1> {value.count}</h1>
+              <br />
+
+              <button onClick={value.handleIncrement}>Increment</button>
+              <button onClick={value.handleDecrement}>Decrement</button>
+            </div>
+          );
         }}
       </userStore.Consumer>
     </div>
