@@ -1,19 +1,33 @@
-import React, { createContext, useState } from "react";
-
+import React, { createContext, useEffect, useState } from "react";
 export const userStore = createContext("Default");
-
 const Store = props => {
-  let [count, setCount] = useState(0);
+  let [city, setCity] = useState("");
+  let [data, setData] = useState(false);
+  let [search, setSearch] = useState(false);
 
-  let handleIncrement = () => {
-    setCount(count + 1);
-  };
-  let handleDecrement = () => {
-    setCount(count - 1);
+  useEffect(() => {
+    if (search) {
+      fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=6afd13eb3627e76136352d0eb59bda49&units=metric`
+      ).then(res =>
+        res.json().then(arr => {
+          setData([arr]);
+
+          console.log(arr);
+        })
+      );
+    }
+    setSearch(false);
+  }, [search]);
+
+  let handleSubmit = e => {
+    e.preventDefault();
+    setSearch(true);
+    console.log("searching....");
   };
 
   return (
-    <userStore.Provider value={{ count, handleDecrement, handleIncrement }}>
+    <userStore.Provider value={{ setCity, handleSubmit, data }}>
       {props.children}
     </userStore.Provider>
   );
