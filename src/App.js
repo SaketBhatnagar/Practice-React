@@ -1,16 +1,24 @@
-import React from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import Store from "./apis/Store";
-import Card from "./components/Card";
 import Home1 from "./components/Home1";
-import Home from "./components/Home1";
-
 import ErrorBoundary from "./Error Boundary/ErrorBoundary";
+
+let Card = lazy(() => import("./components/Card")); // promise
+
 const App = () => {
+  let [shoulLoad, setShouldLoad] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setShouldLoad(true);
+    }, 5000);
+  }, []);
   return (
     <ErrorBoundary>
       <Store>
         <Home1 />
-        <Card />
+        <Suspense fallback={<h1>Loadingdskjhdskjhkjdshkjdshdkj...........</h1>}>
+          <Card />
+        </Suspense>
       </Store>
     </ErrorBoundary>
   );
